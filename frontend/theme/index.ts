@@ -12,6 +12,12 @@ const {
 >
 
 export interface ThemeInterface {
+  black: string,
+  grey: string,
+  lightgrey: string,
+  offWhite: string,
+  maxWidth: string,
+  bs: string,
   malachite: string,
   pigmentGreen: string,
   mintCream: string,
@@ -21,6 +27,12 @@ export interface ThemeInterface {
 }
 
 export const theme = {
+  black: '#393939',
+  grey: '#3A3A3A',
+  lightgrey: '#E1E1E1',
+  offWhite: '#EDEDED',
+  maxWidth: '1000px',
+  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
   malachite: '#01D25D',
   pigmentGreen: '#01B54A',
   mintCream: '#F5FBF8',
