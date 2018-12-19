@@ -1,0 +1,17 @@
+{
+  "name": "flashy",
+  "version": "1.0.0",
+  "description": "Flash Card App",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test jest"
+  },
+  "author": "Frank Faustino",
+  "license": "ISC",
+  "dependencies": {
+    "graph-cli": "0.0.1",
+    "graphql": "^14.0.2",
+    "graphql-yoga": "^1.16.9",
+    "prisma-binding": "^2.2.11"
+  }
+}
