@@ -12,31 +12,20 @@ const Nav = styled.nav`
   display: grid;
   height: 70px;
   grid-template-columns: 1fr 1fr 1fr 1fr 75%;
+
+  a {
+    align-self: center;
+    text-align: center;
+  }
 `
-
-const StyledLink = styled.a`
-  align-self: center;
-  text-align: center;
-`
-
-interface Props {
-  href: string,
-  name: string
-}
-
-const ALink: React.SFC<Props> = ({ href, name }) => (
-  <Link href={href} passHref>
-    <StyledLink>{name}</StyledLink>
-  </Link>
-)
 
 const Header: React.SFC = (): JSX.Element => (
   <header>
     <Nav>
-      <ALink href="/" name="Home" />
-      <ALink href="/decks" name="Decks" />
-      <ALink href="/profile" name="Profile" />
-      <ALink href="/settings" name="Settings" />
+      <Link href="/"><a>Home</a></Link>
+      <Link href="/decks"><a>Decks</a></Link>
+      <Link href="/profile"><a>Profile</a></Link>
+      <Link href="/settings"><a>Settings</a></Link>
     </Nav>
   </header>
 )
