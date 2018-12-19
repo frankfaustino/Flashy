@@ -3,6 +3,8 @@ node_modules
 
 # Production bundle
 build
+.build
+.next
 
 # Optional npm cache directory
 .npm
@@ -17,3 +19,6 @@ coverage
 .vscode
 .snap
 resources
+
+# Environment Variables
+.env
