@@ -4,7 +4,7 @@ interface Props {
   title?: string
 }
 
-const Meta: React.SFC<Props> = ({ title = 'Flashy ⚡' }) => (
+const Meta: React.SFC<Props> = ({ title = 'Flashy ⚡' }): JSX.Element => (
   <Head>
     <meta charSet="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
