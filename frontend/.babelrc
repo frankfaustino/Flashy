@@ -1,13 +1,10 @@
 {
   "env": {
     "development": {
-      "presets": [
-        "next/babel",
-        "@zeit/next-typescript/babel"
-      ],
+      "presets": ["next/babel", "@zeit/next-typescript/babel"],
       "plugins": [
         [
-          "styled-components",
+          "babel-plugin-styled-components",
           {
             "ssr": true,
             "displayName": true
@@ -16,13 +13,10 @@
       ]
     },
     "production": {
-      "presets": [
-        "next/babel",
-        "@zeit/next-typescript/babel"
-      ],
+      "presets": ["next/babel", "@zeit/next-typescript/babel"],
       "plugins": [
         [
-          "styled-components",
+          "babel-plugin-styled-components",
           {
             "ssr": true,
             "displayName": true
@@ -39,16 +33,8 @@
               "modules": "commonjs"
             }
           }
-        ]
-      ],
-      "plugins": [
-        [
-          "styled-components",
-          {
-            "ssr": true,
-            "displayName": true
-          }
-        ]
+        ],
+        "@zeit/next-typescript/babel"
       ]
     }
   }
