@@ -4,7 +4,9 @@ node_modules
 # Production bundle
 build
 .build
+dist
 .next
+.map
 
 # Optional npm cache directory
 .npm

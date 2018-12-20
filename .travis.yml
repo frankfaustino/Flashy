@@ -7,4 +7,4 @@ cache:
 install:
   - cd frontend && npm install && cd ..
 script:
-  - cd frontend && npm test && npm run tslint
+  - cd frontend && npm test && npm run tslint && npm run typecheck

@@ -1,20 +1,21 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "preserve",
-    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "lib": ["dom", "es2015", "es2016"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": false,
+    "outDir": "./dist/out-tsc",
     "preserveConstEnums": true,
-    "sourceMap": true,
+    "removeComments": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types"],
-    "lib": ["dom", "es2015", "es2016"]
+    "sourceMap": true,
+    "target": "esnext",
+    "typeRoots": ["./node_modules/@types"]
   },
   "exclude": [
     "node_modules",
