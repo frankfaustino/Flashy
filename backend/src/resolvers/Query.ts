@@ -10,7 +10,7 @@ export const Query = {
     // if (!ctx.request.userId) {
     //   throw new Error('You must be logged in!')
     // }
-    console.log(ctx.request.userId)
+    // console.log(ctx.request.userId)
     return ctx.prisma.users({})
   }
 }
