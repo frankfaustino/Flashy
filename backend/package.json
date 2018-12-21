@@ -11,14 +11,16 @@
   "author": "Frank Faustino",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^6.2.0",
+    "apollo-server": "^2.3.1",
+    "bcrypt": "^3.0.2",
     "graphql": "^14.0.2",
-    "graphql-yoga": "^1.16.9",
+    "graphql-import": "^0.7.1",
     "jsonwebtoken": "^8.4.0",
-    "prisma-binding": "^2.2.11",
     "prisma-client-lib": "^1.23.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.3.0",
     "dotenv-cli": "^1.4.0",
     "nodemon": "^1.18.2-alpha.1",
     "ts-node": "^7.0.1",
