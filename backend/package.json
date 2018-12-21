@@ -16,11 +16,13 @@
     "graphql": "^14.0.2",
     "graphql-import": "^0.7.1",
     "jsonwebtoken": "^8.4.0",
-    "prisma-client-lib": "^1.23.1"
+    "prisma-client-lib": "^1.23.1",
+    "yup": "^0.26.6"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/jsonwebtoken": "^8.3.0",
+    "@types/yup": "^0.26.3",
     "dotenv-cli": "^1.4.0",
     "nodemon": "^1.18.2-alpha.1",
     "ts-node": "^7.0.1",
