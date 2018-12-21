@@ -1,15 +1,25 @@
-import { GraphQLServer } from 'graphql-yoga'
-import { prisma } from './generated/prisma-client'
+import { ApolloServer, gql } from 'apollo-server'
+import { importSchema } from 'graphql-import'
+import { Prisma } from './generated/prisma-client'
 import resolvers from './resolvers'
 
-const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
+const { APP_SECRET, PORT, PRISMA_ENDPOINT } = process.env
+
+const prisma = new Prisma({
+  endpoint: PRISMA_ENDPOINT,
+  secret: APP_SECRET,
+  debug: true
+})
+
+const importedTypeDefs = importSchema(__dirname + '/schema.graphql')
+const typeDefs = gql`${importedTypeDefs}`
+
+const server = new ApolloServer({
+  typeDefs,
   resolvers,
   context: req => ({ ...req, prisma })
 })
 
-const { PORT } = process.env
-
 server
-  .start({ port: PORT }, () => console.log(`🚀 Server is running on http://localhost:${PORT}`))
+  .listen({ port: PORT }, () => console.log(`🚀 Server is running on http://localhost:${PORT}`))
   .catch(err => console.error(err))
