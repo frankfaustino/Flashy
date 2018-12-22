@@ -1,0 +1,36 @@
+type AuthResponse {
+  id: ID
+  name: String
+  email: String
+  token: String
+  errors: [Error]
+}
+
+type Error {
+  path: String!
+  message: String!
+}
+
+type Query {
+  me: User
+  users: [User]
+  user(id: String): User
+}
+
+type Mutation {
+  signUp(name: String!, email: String!, password: String!): AuthResponse!
+  logIn(email: String!, password: String!): AuthResponse!
+  deleteMe: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  permissions: [Permission]
+}
+
+enum Permission {
+  ADMIN
+  USER
+}
