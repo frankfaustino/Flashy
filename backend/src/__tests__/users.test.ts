@@ -19,11 +19,11 @@ test('Should return array of users if authorized', async () => {
   }
   const client = new GraphQLClient(GRAPHQL_SERVER_URL, OPTIONS)
   const response: any = await client.request(USERS_QUERY)
-  expect(response).toHaveProperty('users')
+  expect(response.users.length).toBeGreaterThan(0)
 })
 
-test('Should return array of users if authorized', async () => {
+test('Should return null if unauthorized', async () => {
   const client = new GraphQLClient(GRAPHQL_SERVER_URL, {})
   const response: any = await client.request(USERS_QUERY)
-  expect(response).toHaveProperty('users')
+  expect(response.users).toBeNull()
 })
