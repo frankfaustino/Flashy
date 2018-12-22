@@ -1,16 +1,20 @@
-import { getUserId, Context } from '../utils'
+import { ResolverMap } from '../types/graphql-utils'
 
-export const Query = {
-  me(parent, args, ctx: Context) {
-    const id = getUserId(ctx)
-    return ctx.prisma.user({ id })
+export const Query: ResolverMap = {
+  me: (_, {}, ctx) => {
+    if (ctx.userId) {
+      return ctx.prisma.user({ id: ctx.userId })
+    }
   },
 
-  async users(parent, args, ctx: Context, info) {
-    // if (!ctx.request.userId) {
-    //   throw new Error('You must be logged in!')
-    // }
-    // console.log(ctx.request.userId)
-    return ctx.prisma.users({})
+  users: async (_, {}, ctx) => {
+    if (ctx.userAdmin) {
+      return ctx.prisma.users({})
+    }
+  },
+
+  user: async (_, args: GQL.IUserOnQueryArguments, ctx) => {
+    const { id, name } = await ctx.prisma.user({ id: args.id })
+    return { id, name }
   }
 }
