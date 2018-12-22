@@ -1,7 +1,5 @@
 import { GraphQLClient } from 'graphql-request'
 
-import { startServer } from '..'
-
 const { GRAPHQL_SERVER_URL, TEST_EMAIL, TEST_ID, TEST_NAME, TEST_PASSWORD } = process.env
 
 const USER_QUERY = `
@@ -65,7 +63,6 @@ let TOKEN: string = ''
 let OPTIONS: object
 
 beforeAll(async () => {
-  await startServer
   client = new GraphQLClient(GRAPHQL_SERVER_URL)
 })
 
