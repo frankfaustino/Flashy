@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "moduleResolution": "node",
+    "lib": ["es6", "esnext.asynciterable", "dom"],
+    "outDir": "./dist/out-tsc",
     "module": "commonjs",
+    "moduleResolution": "node",
     "sourceMap": true,
     "rootDir": "src",
-    "outDir": "dist",
-    "lib": [
-      "esnext", "dom"
+    "target": "es6",
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types"
     ]
   }
 }
