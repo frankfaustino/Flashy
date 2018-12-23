@@ -4,7 +4,8 @@
   "description": "Flash Card App",
   "main": "index.js",
   "scripts": {
-    "start": "dotenv -- nodemon -e ts,graphql -x ts-node --files src/index.ts",
+    "dev": "dotenv -- nodemon -e ts,graphql -x ts-node --files src/index.ts",
+    "start": "dotenv -- ts-node --files src/index.ts",
     "deploy": "prisma deploy",
     "gen-schema-types": "gql2ts src/schemas/schema.graphql -o src/types/schema.d.ts",
     "test": "jest --detectOpenHandles --forceExit",
