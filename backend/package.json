@@ -7,7 +7,8 @@
     "start": "dotenv -- nodemon -e ts,graphql -x ts-node --files src/index.ts",
     "deploy": "prisma deploy",
     "gen-schema-types": "gql2ts src/schemas/schema.graphql -o src/types/schema.d.ts",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest --detectOpenHandles --forceExit",
+    "test-watch": "jest --watch"
   },
   "author": "Frank Faustino",
   "license": "ISC",
@@ -18,6 +19,7 @@
     "graphql-import": "^0.7.1",
     "graphql-middleware": "^3.0.0",
     "graphql-request": "^1.8.2",
+    "graphql-shield": "^5.0.1",
     "graphql-tools": "^4.0.3",
     "jsonwebtoken": "^8.4.0",
     "prisma-client-lib": "^1.23.2",
@@ -38,5 +40,8 @@
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
+  },
+  "nodemonConfig": {
+    "ignore": ["__tests__/*", "*.test.ts"]
   }
 }

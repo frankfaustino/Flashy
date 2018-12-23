@@ -4,11 +4,11 @@ module.exports = {
   collectCoverage: true,
   globalSetup: './jest.setup.js',
   // globalTeardown: './jest.teardown.js',
-  rootDir: '.',
   moduleFileExtensions: ['ts', 'js'],
+  notifyMode: 'always',
+  rootDir: '.',
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
   testRegex: TEST_REGEX,
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest'
-  },
+  transform: { '^.+\\.tsx?$': 'ts-jest' },
+  verbose: true
 }
