@@ -2,7 +2,6 @@ import { GraphQLClient } from 'graphql-request'
 
 const { GRAPHQL_SERVER_URL, TEST_EMAIL, TEST_NAME, TEST_PASSWORD } = process.env
 
-
 const ME_QUERY = `
   query {
     me {
