@@ -11,4 +11,6 @@ cache:
 install:
   - cd backend && npm install && cd ..
 script:
-  - cd backend && npm run ci && cd ..
+  - ./test.sh
+  - sleep 25
+  - npm test
