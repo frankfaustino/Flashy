@@ -3,8 +3,15 @@ import { Prisma } from '../generated/prisma-client'
 export interface Context {
   prisma: Prisma
   headers: any
-  userId: string
-  userAdmin: boolean
+  user: {
+    id: string
+    permission: string
+  }
+  req: {
+    headers: {
+      authorization: string
+    }
+  }
 }
 
 export interface Token {

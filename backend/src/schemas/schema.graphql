@@ -1,9 +1,13 @@
-type AuthResponse {
+type AuthPayload {
   id: ID
   name: String
   email: String
   token: String
   errors: [Error]
+}
+
+type BatchPayload {
+  count: Int!
 }
 
 type Error {
@@ -18,17 +22,41 @@ type Query {
 }
 
 type Mutation {
-  signUp(name: String!, email: String!, password: String!): AuthResponse!
-  logIn(email: String!, password: String!): AuthResponse!
+  signUp(name: String!, email: String!, password: String!): AuthPayload!
+  logIn(email: String!, password: String!): AuthPayload!
   deleteMe: User
+  deleteManyUsers: BatchPayload!
 }
 
 type User {
   id: ID!
   name: String!
   email: String!
-  permissions: [Permission]
+  password: String!
+  permissions: [Permission!]!
+  # decks(where: DeckWhereInput, orderBy: DeckOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Deck!]
+  # cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
 }
+
+# type Deck {
+#   id: ID!
+#   author: User!
+#   title: String!
+#   description: String
+#   slug: String!
+#   cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
+#   published: Boolean!
+# }
+
+# type Card {
+#   id: ID!
+#   author: User!
+#   deck: Deck!
+#   front: String!
+#   back: String!
+#   progress: Int!
+#   dueDate: DateTime!
+# }
 
 enum Permission {
   ADMIN

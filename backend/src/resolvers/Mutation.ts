@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { sendError } from '../utils'
+import { sendError } from '../middleware/utils'
 import { ResolverMap } from '../types/graphql-utils'
 
 const { APP_SECRET } = process.env
@@ -33,7 +33,7 @@ export const Mutation: ResolverMap = {
     return { token, id: user.id, name: user.name, email: user.email }
   },
 
-  deleteMe: async (_, {}, ctx) => {
-    return ctx.prisma.deleteUser({ id: ctx.userId })
-  }
+  deleteMe: async (_, {}, ctx) => ctx.prisma.deleteUser({ id: ctx.user.id }),
+
+  deleteManyUsers: async(_, {}, ctx) => ctx.prisma.deleteManyUsers({ role_not: 'ADMIN' })
 }
