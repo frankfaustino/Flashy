@@ -3,7 +3,7 @@ type User {
   name: String!
   email: String! @unique
   password: String!
-  permissions: [Permission]
+  role: Permission! @default(value: USER)
   decks: [Deck]
   cards: [Card]
 }

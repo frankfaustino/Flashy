@@ -5,12 +5,12 @@ import { makeExecutableSchema } from 'graphql-tools'
 import { Prisma } from './generated/prisma-client'
 import resolvers from './resolvers'
 import typeDefs from './schemas'
-import { authorization, validation } from './utils'
+import { getUser, permissions, validation } from './middleware'
 
 export const startServer = (async () => {
   const { PORT, PRISMA_ENDPOINT, PRISMA_SECRET } = process.env
   const execSchema = makeExecutableSchema({ typeDefs, resolvers })
-  const schema = applyMiddleware(execSchema, authorization, validation)
+  const schema = applyMiddleware(execSchema, permissions, validation)
 
   const prisma = new Prisma({
     endpoint: PRISMA_ENDPOINT,
@@ -20,7 +20,7 @@ export const startServer = (async () => {
 
   const server = new ApolloServer({
     schema,
-    context: ({ req }: any) => ({ ...req, prisma })
+    context: (ctx: any) => ({ ...ctx, prisma, user: getUser(ctx, prisma) })
   })
 
   await server.listen({ port: PORT })

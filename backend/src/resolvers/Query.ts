@@ -1,20 +1,14 @@
 import { ResolverMap } from '../types/graphql-utils'
 
 export const Query: ResolverMap = {
-  me: (_, {}, ctx) => {
-    if (ctx.userId) {
-      return ctx.prisma.user({ id: ctx.userId })
-    }
-  },
+  me: async (_, {}, ctx) => ctx.prisma.user({ id: ctx.user.id }),
 
-  users: async (_, {}, ctx) => {
-    if (ctx.userAdmin) {
-      return ctx.prisma.users({})
-    }
-  },
+  users: async (_, {}, ctx) => ctx.prisma.users({}),
 
   user: async (_, args: GQL.IUserOnQueryArguments, ctx) => {
-    const { id, name } = await ctx.prisma.user({ id: args.id })
-    return { id, name }
+    const user = await ctx.prisma.user({ id: args.id })
+    if (user) {
+      return { id: user.id, name: user.name }
+    }
   }
 }
