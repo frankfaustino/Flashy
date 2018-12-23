@@ -8,7 +8,8 @@
     "deploy": "prisma deploy",
     "gen-schema-types": "gql2ts src/schemas/schema.graphql -o src/types/schema.d.ts",
     "test": "jest --detectOpenHandles --forceExit",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "ci": "NODE_ENV=test start-test"
   },
   "author": "Frank Faustino",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "gql2ts": "^1.10.1",
     "jest": "^23.6.0",
     "nodemon": "^1.18.9",
+    "start-server-and-test": "^1.7.11",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
@@ -42,6 +44,9 @@
     "typescript": "^3.2.2"
   },
   "nodemonConfig": {
-    "ignore": ["__tests__/*", "*.test.ts"]
+    "ignore": [
+      "__tests__/*",
+      "*.test.ts"
+    ]
   }
 }

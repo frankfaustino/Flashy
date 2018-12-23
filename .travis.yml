@@ -5,6 +5,8 @@ cache:
   directories:
     - node_modules
 install:
+  - cd backend && npm install && cd ..
   - cd frontend && npm install && cd ..
 script:
+  - cd backend && npm run ci && cd ..
   - cd frontend && npm test && npm run tslint && npm run typecheck
