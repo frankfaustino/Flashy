@@ -720,7 +720,7 @@ type User {
   name: String!
   email: String!
   password: String!
-  permissions: [Permission!]!
+  role: Permission!
   decks(where: DeckWhereInput, orderBy: DeckOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Deck!]
   cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
 }
@@ -735,7 +735,7 @@ input UserCreateInput {
   name: String!
   email: String!
   password: String!
-  permissions: UserCreatepermissionsInput
+  role: Permission
   decks: DeckCreateManyWithoutAuthorInput
   cards: CardCreateManyWithoutAuthorInput
 }
@@ -750,15 +750,11 @@ input UserCreateOneWithoutDecksInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreatepermissionsInput {
-  set: [Permission!]
-}
-
 input UserCreateWithoutCardsInput {
   name: String!
   email: String!
   password: String!
-  permissions: UserCreatepermissionsInput
+  role: Permission
   decks: DeckCreateManyWithoutAuthorInput
 }
 
@@ -766,7 +762,7 @@ input UserCreateWithoutDecksInput {
   name: String!
   email: String!
   password: String!
-  permissions: UserCreatepermissionsInput
+  role: Permission
   cards: CardCreateManyWithoutAuthorInput
 }
 
@@ -784,6 +780,8 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
+  role_ASC
+  role_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -795,7 +793,7 @@ type UserPreviousValues {
   name: String!
   email: String!
   password: String!
-  permissions: [Permission!]!
+  role: Permission!
 }
 
 type UserSubscriptionPayload {
@@ -820,7 +818,7 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
-  permissions: UserUpdatepermissionsInput
+  role: Permission
   decks: DeckUpdateManyWithoutAuthorInput
   cards: CardUpdateManyWithoutAuthorInput
 }
@@ -829,7 +827,7 @@ input UserUpdateManyMutationInput {
   name: String
   email: String
   password: String
-  permissions: UserUpdatepermissionsInput
+  role: Permission
 }
 
 input UserUpdateOneRequiredWithoutCardsInput {
@@ -846,15 +844,11 @@ input UserUpdateOneRequiredWithoutDecksInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdatepermissionsInput {
-  set: [Permission!]
-}
-
 input UserUpdateWithoutCardsDataInput {
   name: String
   email: String
   password: String
-  permissions: UserUpdatepermissionsInput
+  role: Permission
   decks: DeckUpdateManyWithoutAuthorInput
 }
 
@@ -862,7 +856,7 @@ input UserUpdateWithoutDecksDataInput {
   name: String
   email: String
   password: String
-  permissions: UserUpdatepermissionsInput
+  role: Permission
   cards: CardUpdateManyWithoutAuthorInput
 }
 
@@ -933,6 +927,10 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  role: Permission
+  role_not: Permission
+  role_in: [Permission!]
+  role_not_in: [Permission!]
   decks_every: DeckWhereInput
   decks_some: DeckWhereInput
   decks_none: DeckWhereInput
