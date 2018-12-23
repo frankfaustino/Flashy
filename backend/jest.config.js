@@ -2,7 +2,7 @@ const TEST_REGEX = '(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|tsx?|ts?)$'
 
 module.exports = {
   collectCoverage: true,
-  globalSetup: './jest.setup.js',
+  // globalSetup: './jest.setup.js',
   // globalTeardown: './jest.teardown.js',
   moduleFileExtensions: ['ts', 'js'],
   notifyMode: 'always',
