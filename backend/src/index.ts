@@ -9,6 +9,7 @@ import { getUser, permissions, validation } from './middleware'
 
 export const startServer = (async () => {
   const { PORT, PRISMA_ENDPOINT, PRISMA_SECRET } = process.env
+  console.log(PORT, PRISMA_ENDPOINT)
   const execSchema = makeExecutableSchema({ typeDefs, resolvers })
   const schema = applyMiddleware(execSchema, permissions, validation)
 
