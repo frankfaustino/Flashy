@@ -10,7 +10,7 @@
     "test": "jest --detectOpenHandles --forceExit",
     "test-watch": "jest --watch",
     "start:server-test": "dotenv -- ts-node --files src/index.ts",
-    "ci": "NODE_ENV=test start-test start:server-test 9999 test"
+    "ci": "start-test start:server-test http://localhost:9999 test"
   },
   "author": "Frank Faustino",
   "license": "ISC",
