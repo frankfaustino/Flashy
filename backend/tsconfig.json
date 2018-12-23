@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "esnext.asynciterable", "dom"],
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
     "outDir": "./dist/out-tsc",
     "module": "commonjs",
     "moduleResolution": "node",
