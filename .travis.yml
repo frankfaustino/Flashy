@@ -7,4 +7,4 @@ cache:
 install:
   - cd backend && npm install && cd ..
 script:
-  - cd backend && npm start
+  - cd backend && npm run ci && cd ..
