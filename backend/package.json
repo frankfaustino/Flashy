@@ -9,7 +9,8 @@
     "gen-schema-types": "gql2ts src/schemas/schema.graphql -o src/types/schema.d.ts",
     "test": "jest --detectOpenHandles --forceExit",
     "test-watch": "jest --watch",
-    "ci": "NODE_ENV=test start-test start 9999 test"
+    "start:server-test": "dotenv -- ts-node --files src/index.ts",
+    "ci": "NODE_ENV=test start-test start:server-test 9999 test"
   },
   "author": "Frank Faustino",
   "license": "ISC",
