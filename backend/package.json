@@ -9,7 +9,8 @@
     "deploy": "prisma deploy",
     "gen-schema-types": "gql2ts src/schemas/schema.graphql -o src/types/schema.d.ts",
     "test": "jest --detectOpenHandles --forceExit",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "start-test": "npm start & sleep 5 && npm test"
   },
   "author": "Frank Faustino",
   "license": "ISC",
