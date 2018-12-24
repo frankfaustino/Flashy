@@ -14,8 +14,7 @@ export const startServer = (async () => {
 
   const prisma = new Prisma({
     endpoint: PRISMA_ENDPOINT,
-    secret: PRISMA_SECRET,
-    debug: false
+    secret: PRISMA_SECRET
   })
 
   const server = new ApolloServer({
@@ -23,6 +22,6 @@ export const startServer = (async () => {
     context: (ctx: any) => ({ ...ctx, prisma, user: getUser(ctx, prisma) })
   })
 
-  await server.listen({ port: PORT })
-  console.log(`🚀 Server is running on http://localhost:${PORT}`)
+  const { url } = await server.listen({ port: PORT })
+  console.log(`🚀 GraphQL server is running on ${url}`)
 })()
