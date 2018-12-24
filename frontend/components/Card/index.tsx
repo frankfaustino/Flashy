@@ -1,4 +1,4 @@
-import styled from '../../theme'
+import styled from '../../utils'
 
 // import Answer from './Answer'
 // import Question from './Question'

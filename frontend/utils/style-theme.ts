@@ -11,7 +11,7 @@ const {
   ThemeInterface
 >
 
-export interface ThemeInterface {
+interface ThemeInterface {
   black: string,
   grey: string,
   lightgrey: string,
@@ -26,7 +26,7 @@ export interface ThemeInterface {
   aeroBlue: string
 }
 
-export const theme = {
+const theme = {
   black: '#393939',
   grey: '#3A3A3A',
   lightgrey: '#E1E1E1',
@@ -43,7 +43,7 @@ export const theme = {
 
 export default styled
 
-export { css, createGlobalStyle, keyframes, ThemeProvider }
+export { css, createGlobalStyle, keyframes, theme, ThemeProvider }
 
 /*
 app {
