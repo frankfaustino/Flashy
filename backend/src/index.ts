@@ -11,6 +11,10 @@ export const startServer = (async () => {
   const { PORT, PRISMA_ENDPOINT, PRISMA_SECRET } = process.env
   const execSchema = makeExecutableSchema({ typeDefs, resolvers })
   const schema = applyMiddleware(execSchema, permissions, validation)
+  const cors = {
+    credentials: true,
+    origin: 'http://localhost:8888',
+  }
 
   const prisma = new Prisma({
     endpoint: PRISMA_ENDPOINT,
@@ -19,6 +23,7 @@ export const startServer = (async () => {
 
   const server = new ApolloServer({
     schema,
+    cors,
     context: (ctx: any) => ({ ...ctx, prisma, user: getUser(ctx, prisma) })
   })
 
