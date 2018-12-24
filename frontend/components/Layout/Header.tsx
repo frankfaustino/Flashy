@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
-import styled from '../../theme'
+import styled from '../../utils'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()

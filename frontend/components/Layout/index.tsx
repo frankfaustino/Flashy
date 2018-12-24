@@ -2,7 +2,7 @@ import Meta from './Meta';
 import Header from './Header';
 import Footer from './Footer';
 
-import styled, { createGlobalStyle, ThemeProvider, theme } from '../../theme'
+import styled, { createGlobalStyle, ThemeProvider, theme } from '../../utils'
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -41,13 +41,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    margin: 0;
-    padding: 0;
+    max-width: ${props => props.theme.maxWidth};
+    margin: 0 auto;
+    padding: 2rem;
+    color: ${props => props.theme.black};
+    background: #FCFCFC;
     font-family: 'Gotham Rounded Book';
     font-size: 1.5rem;
     line-height: 2;
-    background: #FCFCFC;
-    color: ${props => props.theme.black};
   }
   a {
     font-family: 'Gotham Rounded Medium';
@@ -60,8 +61,6 @@ const GlobalStyle = createGlobalStyle`
 
 const Content = styled.div`
   max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 2rem;
 `
 
 interface Props {

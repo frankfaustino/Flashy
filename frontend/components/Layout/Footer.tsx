@@ -1,7 +1,15 @@
+import styled from '../../utils'
+
+const StyledFooter = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const Footer: React.SFC = (): JSX.Element => (
-  <footer>
+  <StyledFooter>
     <h3>footer</h3>
-  </footer>
+  </StyledFooter>
 )
 
 export default Footer
