@@ -13,7 +13,7 @@ const USERS_QUERY = `
 
 const USER_QUERY = `
   query {
-    user(id: "cjq0274u33apy099129zwl387") {
+    user(id: "${TEST_ID}") {
       id
       name
     }
@@ -28,26 +28,23 @@ describe('Query', () => {
   }
   let client = new GraphQLClient(GRAPHQL_SERVER_URL, OPTIONS)
 
-  test('Should return array of users if authorized', () => {
-    client.request(USERS_QUERY)
-      .then(response => {
-        expect(response).toHaveProperty('users')
-      })
-      .catch(() => expect(0).toBe(1))
+  test('Should return array of users if authorized', async () => {
+    const response = await client.request(USERS_QUERY)
+    expect(response).toHaveProperty('users')
   })
 
-  test('Should allow finding of an existing user account', () => {
-    client.request(USER_QUERY)
-      .then(response => {
-        expect(response).toHaveProperty('user.name', 'Frank')
-      })
-      .catch(() => expect(0).toBe(1))
+  test('Should allow finding of an existing user account', async () => {
+    const response = await client.request(USER_QUERY)
+    expect(response).toHaveProperty('user.name', 'Frank')
   })
 
-  test('Should return null if unauthorized', () => {
-    client = new GraphQLClient(GRAPHQL_SERVER_URL, {})
-    client.request(USERS_QUERY)
-      .catch(err => expect(err).toThrowError('Not Authorized!'))
+  test('Data object should return null if unauthorized', async () => {
+    expect.assertions(1)
+    try {
+      client = new GraphQLClient(GRAPHQL_SERVER_URL, {})
+      const response = await client.rawRequest(USERS_QUERY)
+    } catch (err) {
+      expect(err.response.data.users).toBeNull()
+    }
   })
 })
-
