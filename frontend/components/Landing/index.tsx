@@ -11,19 +11,20 @@ const Background = styled.div`
   min-height: 80vh;
   background: ${props => props.theme.malachite};
 
-  ${media.desktop`
-    background: red;
+  ${media.mobile`
+    background: #01B54A;
   `}
   ${media.tablet`
-    background: yellow;
+    background: #CCE1D6;
   `}
-  ${media.mobile`
-    background: blue;
+  ${media.desktop`
+    background: #01D25D;
   `}
 `
 
 const ButtonWrapper = styled.div`
   display: grid;
+  overflow: visible;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   margin-top: 50px;

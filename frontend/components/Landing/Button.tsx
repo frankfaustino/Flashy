@@ -14,8 +14,10 @@ const buttonStyles = {
   login: css`
     color: ${({ theme }) => theme.malachite};
     background: white;
-    border: 1px solid #00c100;
-    box-shadow: 0 5px 8px 3px rgba(0, 0, 0, 0.1), inset 0 -2px 0 0 #eeeeee,
+    border: 1px solid #00C100;
+    box-shadow:
+      0 5px 8px 3px rgba(0, 0, 0, 0.1),
+      inset 0 -2px 0 0 #EEE,
       inset 0 -6px 0 0 rgba(127, 127, 127, 0.25);
   `,
   signup: css`
@@ -36,4 +38,6 @@ interface ButtonProps {
   type: string
 }
 
-export default ({ text, type }: ButtonProps) => <StyledButton type={type}>{text}</StyledButton>
+const Button: React.SFC<ButtonProps> = ({ text, type }) => <StyledButton type={type}>{text}</StyledButton>
+
+export default Button

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
-import styled from '../../utils'
+import styled, { media } from '../../utils'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
@@ -11,12 +11,17 @@ Router.onRouteChangeError = () => NProgress.done()
 const Nav = styled.nav`
   display: grid;
   height: 70px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 75%;
+  grid-template-columns: repeat(4, 1fr);
 
   a {
+    color: ${({ theme }) => theme.black};
     align-self: center;
     text-align: center;
   }
+
+  ${media.desktop`
+    grid-template-columns: repeat(4, 1fr) 60%;
+  `}
 `
 
 const Header: React.SFC = (): JSX.Element => (
