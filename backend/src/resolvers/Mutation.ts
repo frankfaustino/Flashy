@@ -35,5 +35,5 @@ export const Mutation: ResolverMap = {
 
   deleteMe: async (_, {}, ctx) => ctx.prisma.deleteUser({ id: ctx.user.id }),
 
-  deleteManyUsers: async(_, {}, ctx) => ctx.prisma.deleteManyUsers({ role_not: 'ADMIN' })
+  deleteManyUsers: async (_, {}, ctx) => ctx.prisma.deleteManyUsers({ role_not: 'ADMIN' })
 }

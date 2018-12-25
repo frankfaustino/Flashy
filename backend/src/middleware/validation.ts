@@ -5,8 +5,8 @@ import { Context } from '../types/graphql-utils'
 
 const validationSchema = object().shape({
   name: string().trim().min(2).max(255),
-  email: string().trim().min(3).max(255).email().required(),
-  password: string().min(3).max(255).required()
+  email: string().trim().min(3).max(255).email(),
+  password: string().min(3).max(255)
 })
 
 export const validation = {
