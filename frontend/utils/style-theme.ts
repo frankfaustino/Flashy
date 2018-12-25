@@ -21,6 +21,7 @@ interface ThemeInterface {
   malachite: string,
   pigmentGreen: string,
   mintCream: string,
+  white: string,
   whiteIce: string,
   mediumAquamarine: string,
   aeroBlue: string
@@ -36,6 +37,7 @@ const theme = {
   malachite: '#01D25D',
   pigmentGreen: '#01B54A',
   mintCream: '#F5FBF8',
+  white: '#FCFCFC',
   whiteIce: '#D5F7E7',
   mediumAquamarine: '#57E49E',
   aeroBlue: '#CCE1D6'
@@ -70,8 +72,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-  html * {
+  html {
     overflow: hidden;
+  }
+  html * {
     box-sizing: border-box;
     font-family: 'Gotham Rounded Book';
     font-size: 16px;
@@ -85,9 +89,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     max-width: ${({ theme }) => theme.maxWidth};
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem 2rem;
     color: ${({ theme }) => theme.black};
-    background: #FCFCFC;
+    background: ${({ theme }) => theme.malachite};
     font-size: 1.5rem;
     line-height: 2;
   }

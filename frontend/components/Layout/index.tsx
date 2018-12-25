@@ -5,11 +5,16 @@ import Footer from './Footer';
 import styled, { GlobalStyle, ThemeProvider, theme } from '../../utils'
 
 const Content = styled.div`
-  max-width: ${props => props.theme.maxWidth};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80vh;
+  max-width: ${({ theme }) => theme.maxWidth};
 `
 
 interface Props {
-  children?: object,
+  children?: object
 }
 
 const Layout: React.SFC<Props> = ({ children }): JSX.Element => (

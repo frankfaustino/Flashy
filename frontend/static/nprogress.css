@@ -4,14 +4,13 @@
 }
 
 #nprogress .bar {
-  background: red;
   position: fixed;
-  z-index: 1031;
   top: 0;
   left: 0;
-
   width: 100%;
   height: 5px;
+  background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
+  z-index: 1031;
 }
 
 /* Fancy blur effect */

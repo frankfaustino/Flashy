@@ -1,26 +1,6 @@
-import styled, { media } from '../../utils'
-import Button from './Button'
-import Mascot from './Mascot'
+import styled from '../../utils'
+import { Button, LogoWithBg } from '../common'
 import Title from './Title'
-
-const Background = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  background: ${props => props.theme.malachite};
-
-  ${media.mobile`
-    background: #01B54A;
-  `}
-  ${media.tablet`
-    background: #CCE1D6;
-  `}
-  ${media.desktop`
-    background: #01D25D;
-  `}
-`
 
 const ButtonWrapper = styled.div`
   display: grid;
@@ -31,12 +11,12 @@ const ButtonWrapper = styled.div`
 `
 
 export default () => (
-  <Background>
-    <Mascot />
+  <>
+    <LogoWithBg />
     <Title />
     <ButtonWrapper>
-      <Button text="Sign up" type="signup" />
-      <Button text="Login" type="login" />
+      <Button text="Sign up" to="/signup" variant="dashed" />
+      <Button text="Login" to="/login" variant="solid" />
     </ButtonWrapper>
-  </Background>
+  </>
 )
