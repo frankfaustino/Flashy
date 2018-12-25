@@ -1,3 +1,3 @@
-const Decks: React.SFC = () => <div>decks</div>
+const Decks: React.SFC = () => <div />
 
 export default Decks

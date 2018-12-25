@@ -1,3 +1,3 @@
-const Profile: React.SFC = () => <div>profile</div>
+const Profile: React.SFC = () => <div>Profile</div>
 
 export default Profile
