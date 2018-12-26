@@ -8,7 +8,7 @@
     "dev": "dotenv -- nodemon -e ts,graphql -x ts-node --files src/index.ts",
     "gen-schema-types": "gql2ts src/schemas/schema.graphql -o src/types/schema.d.ts",
     "start": "dotenv -- ts-node --files src/index.ts",
-    "start-test": "npm start & sleep 5 && npm test",
+    "start-test": "NODE_ENV=test npm start & sleep 5 && npm test",
     "test": "jest --detectOpenHandles --forceExit",
     "test-watch": "jest --watch"
   },

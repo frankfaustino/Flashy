@@ -8,7 +8,7 @@ import { getUser, permissions, prisma, sesh, validation } from './middleware'
 
 export const startServer = (async () => {
   const app = express()
-  const { CLIENT_ENDPOINT, PORT } = process.env
+  const { CLIENT_ENDPOINT, NODE_ENV, PORT } = process.env
   const execSchema = makeExecutableSchema({ typeDefs, resolvers })
   const schema = applyMiddleware(execSchema, permissions, validation)
 
@@ -28,6 +28,9 @@ export const startServer = (async () => {
   server.applyMiddleware({ app, path: '/', cors })
 
   app.listen({ port: PORT }, () =>
-    console.log(`🚀 GraphQL server is running on http://localhost:${PORT}${server.graphqlPath}`)
+    console.log(`
+      🌍 ${NODE_ENV}\n
+      🚀 GraphQL server is running on http://localhost:${PORT}${server.graphqlPath}
+    `)
   )
 })()

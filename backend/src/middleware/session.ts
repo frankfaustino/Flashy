@@ -5,7 +5,7 @@ import * as Redis from 'ioredis'
 const { NODE_ENV, REDIS_ENDPOINT, REDIS_PW, SESSION_SECRET } = process.env
 
 const REDIS_CONNECT =
-  NODE_ENV === 'production'
+  NODE_ENV === 'production' || NODE_ENV === 'test'
     ? `redis://:${REDIS_PW}@${REDIS_ENDPOINT}`
     : ''
 
