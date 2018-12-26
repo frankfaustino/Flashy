@@ -14,6 +14,7 @@ export const Mutation: ResolverMap = {
       password: hashPassword
     })
     const token = sign({ userId: user.id }, APP_SECRET)
+    ctx.req.session.user = { id: user.id, token }
 
     return { token, id: user.id, name: user.name, email: user.email }
   },
@@ -29,11 +30,17 @@ export const Mutation: ResolverMap = {
     }
 
     const token = sign({ userId: user.id }, APP_SECRET)
+    ctx.req.session.user = { id: user.id, token }
 
     return { token, id: user.id, name: user.name, email: user.email }
   },
 
-  deleteMe: async (_, {}, ctx) => ctx.prisma.deleteUser({ id: ctx.user.id }),
+  logOut: async (_, args, { req }) => {
+    await req.session.destroy(err => err && ({ message: 'unable to logout' }))
+    return { message: 'success!' }
+  },
+
+  deleteMe: async (_, {}, ctx) => ctx.prisma.deleteUser({ id: ctx.req.session.user.id }),
 
   deleteManyUsers: async (_, {}, ctx) => ctx.prisma.deleteManyUsers({ role_not: 'ADMIN' })
 }

@@ -28,6 +28,14 @@ const SIGNUP_MUTATION = `
   }
 `
 
+const LOGOUT_MUTATION = `
+  mutation {
+    logOut {
+      message
+    }
+  }
+`
+
 const LOGIN_MUTATION = (email: string, password: string) => `
   mutation {
     logIn(email: "${email}", password: "${password}") {
@@ -69,6 +77,15 @@ describe('Mutation signUp', () => {
       }
     }
     expect(response).toHaveProperty('signUp.email', TEST_EMAIL)
+  })
+})
+
+describe('Mutation logOut', () => {
+  test('Should allow a user to log out', async () => {
+    client = new GraphQLClient(GRAPHQL_SERVER_URL, OPTIONS)
+    await client.request(LOGIN_MUTATION(TEST_EMAIL, TEST_PASSWORD))
+    const response: any = await client.request(LOGOUT_MUTATION)
+    expect(response).toHaveProperty('logOut.message', 'success!')
   })
 })
 

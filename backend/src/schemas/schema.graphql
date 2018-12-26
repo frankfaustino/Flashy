@@ -1,3 +1,11 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  permissions: [Permission!]!
+}
+
 type AuthPayload {
   id: ID
   name: String
@@ -8,6 +16,10 @@ type AuthPayload {
 
 type BatchPayload {
   count: Int
+}
+
+type SuccessPayload {
+  message: String
 }
 
 type Error {
@@ -24,18 +36,9 @@ type Query {
 type Mutation {
   signUp(name: String!, email: String!, password: String!): AuthPayload!
   logIn(email: String!, password: String!): AuthPayload!
+  logOut: SuccessPayload
   deleteMe: User
   deleteManyUsers: BatchPayload
-}
-
-type User {
-  id: ID!
-  name: String!
-  email: String!
-  password: String!
-  permissions: [Permission!]!
-  # decks(where: DeckWhereInput, orderBy: DeckOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Deck!]
-  # cards(where: CardWhereInput, orderBy: CardOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Card!]
 }
 
 # type Deck {
