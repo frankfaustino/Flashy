@@ -1,7 +1,9 @@
-# Flashy ⚡ [![Build Status](https://travis-ci.com/frankfaustino/Flashy.svg?branch=master)](https://travis-ci.com/frankfaustino/Flashy)
+# ⚡ Flashy ⚡
+
+[![Build Status](https://travis-ci.com/frankfaustino/Flashy.svg?branch=master)](https://travis-ci.com/frankfaustino/Flashy)
 
 
-Welcome to Flashy ⚡
+This totally kewl flash card app uses **TypeScript**, **React**, **GraphQL**, **Apollo Client & Server**, and **Express**.
 ***
 
 ## Contents

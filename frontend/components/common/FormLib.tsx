@@ -22,10 +22,13 @@ const convertErrors = (error: ValidationError) => {
   if (error.message.includes('unique')) {
     return { email: 'this email is already in use' }
   }
-  return error.inner.reduce((acc, cur) => {
-    acc[cur.path] = cur.message
-    return acc
-  }, {})
+  if (error.inner) {
+    return error.inner.reduce((acc, cur) => {
+      acc[cur.path] = cur.message
+      return acc
+    }, {})
+  }
+  return {}
 }
 
 const FormLib = ({ children, initialValues, onSubmit, validate }: FormUtilsArgs) => {

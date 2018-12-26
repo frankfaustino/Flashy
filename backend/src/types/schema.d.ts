@@ -36,7 +36,8 @@ declare namespace GQL {
     id: string;
     name: string;
     email: string;
-    permissions: Array<Permission | null> | null;
+    password: string;
+    permissions: Array<Permission>;
   }
 
   const enum Permission {
@@ -46,9 +47,11 @@ declare namespace GQL {
 
   interface IMutation {
     __typename: 'Mutation';
-    signUp: IAuthResponse;
-    logIn: IAuthResponse;
+    signUp: IAuthPayload;
+    logIn: IAuthPayload;
+    logOut: ISuccessPayload | null;
     deleteMe: IUser | null;
+    deleteManyUsers: IBatchPayload | null;
   }
 
   interface ISignUpOnMutationArguments {
@@ -62,8 +65,8 @@ declare namespace GQL {
     password: string;
   }
 
-  interface IAuthResponse {
-    __typename: 'AuthResponse';
+  interface IAuthPayload {
+    __typename: 'AuthPayload';
     id: string | null;
     name: string | null;
     email: string | null;
@@ -75,6 +78,16 @@ declare namespace GQL {
     __typename: 'Error';
     path: string;
     message: string;
+  }
+
+  interface ISuccessPayload {
+    __typename: 'SuccessPayload';
+    message: string | null;
+  }
+
+  interface IBatchPayload {
+    __typename: 'BatchPayload';
+    count: number | null;
   }
 }
 

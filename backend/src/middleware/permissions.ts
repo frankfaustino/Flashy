@@ -1,11 +1,28 @@
+import { Request, Response, NextFunction } from 'express'
+import { verify } from 'jsonwebtoken'
+import { Context, Token } from '../types/graphql-utils'
 import { shield, and, rule } from 'graphql-shield'
 
-const isAuthenticated = rule()((_, args, { user }) => user !== null)
+export const getUser = (req: Request, res: Response, next: NextFunction) => {
+  const { authorization } = req.headers
 
-const isAdmin = rule()(async (_, args, ctx) => {
-  const { id } = ctx.user
-  const scope = await ctx.prisma.user({ id }).role()
-  return scope === 'ADMIN'
+  if (req.session && authorization) {
+    const token = authorization.replace('Bearer ', '')
+    const { userId: id } = verify(token, process.env.APP_SECRET) as Token
+    req.session.user = { id, token }
+  }
+  next()
+}
+
+const isAuthenticated = rule()((_, args, { req }: Context) => req.session.user.id !== null)
+
+const isAdmin = rule()(async (_, args, { prisma, req }: Context) => {
+  if (req.session.user) {
+    const { id } = req.session.user
+    const scope = await prisma.user({ id }).role()
+    return scope === 'ADMIN'
+  }
+  return false
 })
 
 export const permissions = shield({
@@ -16,6 +33,7 @@ export const permissions = shield({
   },
   Mutation: {
     deleteMe: isAuthenticated,
-    deleteManyUsers: and(isAuthenticated, isAdmin)
+    deleteManyUsers: and(isAuthenticated, isAdmin),
+    logOut: isAuthenticated
   }
 })

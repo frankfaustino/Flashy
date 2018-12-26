@@ -1,17 +1,10 @@
 import { Prisma } from '../generated/prisma-client'
+import { Request } from 'express'
 
 export interface Context {
   prisma: Prisma
-  headers: any
-  user: {
-    id: string
-    permission: string
-  }
-  req: {
-    headers: {
-      authorization: string
-    }
-  }
+  req: Request
+  request: Request
 }
 
 export interface Token {

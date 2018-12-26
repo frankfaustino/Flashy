@@ -1,32 +1,33 @@
-import { ApolloServer } from 'apollo-server'
+import * as express from 'express'
+import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
 import { applyMiddleware } from 'graphql-middleware'
-import { makeExecutableSchema } from 'graphql-tools'
 
-import { Prisma } from './generated/prisma-client'
 import resolvers from './resolvers'
 import typeDefs from './schemas'
-import { getUser, permissions, validation } from './middleware'
+import { getUser, permissions, prisma, sesh, validation } from './middleware'
 
 export const startServer = (async () => {
-  const { PORT, PRISMA_ENDPOINT, PRISMA_SECRET } = process.env
+  const app = express()
+  const { CLIENT_ENDPOINT, PORT } = process.env
   const execSchema = makeExecutableSchema({ typeDefs, resolvers })
   const schema = applyMiddleware(execSchema, permissions, validation)
-  const cors = {
-    credentials: true,
-    origin: 'http://localhost:8888',
-  }
 
-  const prisma = new Prisma({
-    endpoint: PRISMA_ENDPOINT,
-    secret: PRISMA_SECRET
-  })
+  app.use(sesh)
+  app.use(getUser)
 
   const server = new ApolloServer({
     schema,
-    cors,
-    context: (ctx: any) => ({ ...ctx, prisma, user: getUser(ctx, prisma) })
+    context: (ctx: any) => ({ ...ctx, prisma })
   })
 
-  const { url } = await server.listen({ port: PORT })
-  console.log(`🚀 GraphQL server is running on ${url}`)
+  const cors = {
+    credentials: true,
+    origin: CLIENT_ENDPOINT
+  }
+
+  server.applyMiddleware({ app, path: '/', cors })
+
+  app.listen({ port: PORT }, () =>
+    console.log(`🚀 GraphQL server is running on http://localhost:${PORT}${server.graphqlPath}`)
+  )
 })()
