@@ -1,4 +1,4 @@
-import { css } from './style-theme'
+import { css } from './globalStyle'
 
 export const truncate = (width?: number) => {
   return `
