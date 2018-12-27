@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import styled, { css } from '../../utils'
+import styled, { css } from '../lib'
 
 const buttonStyles = {
   base: css`
@@ -13,15 +13,15 @@ const buttonStyles = {
   `,
   solid: css`
     color: ${({ theme }) => theme.malachite};
-    background: #fcfcfc;
-    border: 1px solid #00c100;
+    background: ${({ theme }) => theme.white};
+    border: 1px solid ${({ theme }) => theme.malachite};
     box-shadow: 0 5px 8px 3px rgba(0, 0, 0, 0.1), inset 0 -2px 0 0 #eee,
       inset 0 -6px 0 0 rgba(127, 127, 127, 0.25);
   `,
   dashed: css`
-    color: white;
+    color: ${({ theme }) => theme.white};
     background: transparent;
-    border: 1px dashed white;
+    border: 1px dashed ${({ theme }) => theme.white};
   `
 }
 

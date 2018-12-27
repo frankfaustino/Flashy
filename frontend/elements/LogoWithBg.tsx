@@ -1,10 +1,12 @@
 import { Logo, LogoBg } from '.'
-import styled from '../../utils'
+import styled from '../lib'
 
 const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 178px;
+  margin: 25px;
 `
 
 const LogoWithBg = () => (

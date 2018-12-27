@@ -1,10 +1,15 @@
 import App, { Container } from 'next/app'
 import { ApolloProvider } from 'react-apollo'
+import { ApolloClient } from 'apollo-boost'
 
-import withData from '../lib/with-data'
-import Layout from '../components/Layout'
+import withData from '../lib/withData'
+import Layout from '../blocks/Layout'
 
-class Root extends App {
+interface Props {
+  apollo: ApolloClient<{}>
+}
+
+class Root extends App<Props> {
   static async getInitialProps({ Component, ctx }: any) {
     let pageProps = {} as any
     if (Component.getInitialProps) {
@@ -15,7 +20,7 @@ class Root extends App {
   }
 
   render() {
-    const { apollo, Component, pageProps } = this.props as any
+    const { apollo, Component, pageProps } = this.props
 
     return (
       <Container>

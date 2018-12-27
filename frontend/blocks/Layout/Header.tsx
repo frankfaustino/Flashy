@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
-import styled, { media } from '../../utils'
+import styled, { media } from '../../lib'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
