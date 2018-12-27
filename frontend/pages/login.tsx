@@ -1,9 +1,15 @@
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import { object, string } from 'yup'
 
-import Login from '../components/Login'
-import { LogoWithBg } from '../components/common'
-import { AuthWrapper, Title } from '../components/common/styles'
+import Form, { FormLib } from '../blocks/Form'
+import { LogoWithBg, H2 } from '../elements'
+import styled from '../lib'
+
+interface InputValues {
+  email: string
+  password: string
+}
 
 const LOGIN_MUTATION = gql`
   mutation LOGIN_MUTATION($email: String!, $password: String!) {
@@ -14,15 +20,35 @@ const LOGIN_MUTATION = gql`
   }
 `
 
+const Main = styled.div`
+  display: grid;
+  grid-auto-rows: 178px 100px 1fr;
+  justify-content: center;
+  align-items: center;
+`
+
 const LogInPage = () => {
+  const schema = object().shape({
+    email: string().trim().min(3).max(255).email().required(),
+    password: string().min(3).max(255).required()
+  })
+
   return (
-    <AuthWrapper>
+    <Main>
       <LogoWithBg />
-      <Title>Log in to Flashy!</Title>
+      <H2>Log in to Flashy!</H2>
       <Mutation mutation={LOGIN_MUTATION}>
-        {(logIn, { loading }) => <Login logIn={logIn} loading={loading} />}
+        {(logIn, { loading }) => (
+          <FormLib
+          initialValues={{ email: '', password: '' }}
+          validate={(values: InputValues) => schema.validateSync(values, { abortEarly: false })}
+          onSubmit={logIn}
+        >
+          <Form type="Log in" loading={loading} />
+        </FormLib>
+        )}
       </Mutation>
-    </AuthWrapper>
+    </Main>
   )
 }
 

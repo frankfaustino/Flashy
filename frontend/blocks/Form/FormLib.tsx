@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react'
+import React, { createContext, ReactNode, useState } from 'react'
 import { ValidationError } from 'yup'
 
 const FormContext = createContext(undefined)
@@ -12,7 +12,7 @@ interface Event {
 }
 
 interface FormUtilsArgs {
-  children?: any
+  children?: ReactNode
   initialValues: any
   onSubmit: Function
   validate: Function

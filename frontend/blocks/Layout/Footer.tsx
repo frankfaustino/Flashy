@@ -1,4 +1,4 @@
-import styled from '../../utils'
+import styled from '../../lib'
 
 const StyledFooter = styled.footer`
   display: flex;

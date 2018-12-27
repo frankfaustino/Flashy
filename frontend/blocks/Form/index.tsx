@@ -1,14 +1,14 @@
 import { useContext } from 'react'
-import { FormContext } from './FormLib'
-import StyledForm from './styles/Form'
-import { Button } from '.'
+import FormLib, { FormContext } from './FormLib'
+import Form from './Form'
+import { Button } from '../../elements'
 
 interface FormProps {
   loading: boolean,
   type: string
 }
 
-const Form: React.SFC<FormProps> = ({ loading, type }) => {
+const FormWrapper: React.SFC<FormProps> = ({ loading, type }) => {
   const { errors, handleSubmit, input } = useContext(FormContext)
   const nameInput = (
     <>
@@ -19,7 +19,7 @@ const Form: React.SFC<FormProps> = ({ loading, type }) => {
   )
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <fieldset disabled={loading} aria-busy={loading}>
         {type === 'Sign up' && nameInput}
         <label>Email</label>
@@ -30,8 +30,9 @@ const Form: React.SFC<FormProps> = ({ loading, type }) => {
         {errors.password && <div>{errors.password}</div>}
         <Button size="100%" text={type} type="submit" variant="solid" />
       </fieldset>
-    </StyledForm>
+    </Form>
   )
 }
 
-export default Form
+export default FormWrapper
+export { FormLib }

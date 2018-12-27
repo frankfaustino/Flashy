@@ -1,6 +1,6 @@
 export default () => (
   <svg
-    style={{ zIndex: 0, position: 'absolute', marginTop: '-3px' }}
+    style={{ zIndex: 0, position: 'absolute' }}
     width="179"
     height="178"
     viewBox="0 0 179 178"

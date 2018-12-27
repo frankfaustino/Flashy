@@ -1,4 +1,4 @@
-import styled, { keyframes } from '../../../utils'
+import styled, { keyframes } from '../../lib'
 
 const loading = keyframes`
   from {
@@ -9,7 +9,7 @@ const loading = keyframes`
   }
 `
 
-const FormStyles = styled.form`
+const Form = styled.form`
   width: 400px;
   padding: 20px;
   border-radius: 10px;
@@ -39,7 +39,7 @@ const FormStyles = styled.form`
     font-size: 1rem;
     &:focus {
       outline: 0;
-      background: ${({ theme }) => theme.whiteIce};
+      background: ${({ theme }) => theme.white};
     }
   }
   input:focus,
@@ -117,4 +117,4 @@ const FormStyles = styled.form`
   }
 `
 
-export default FormStyles
+export default Form
