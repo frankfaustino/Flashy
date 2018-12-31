@@ -1,4 +1,5 @@
-import styled from '../lib'
+import withAuth from '../blocks/withAuth'
+import styled from '../lib/styles/global-styles'
 
 const Main = styled.div`
   display: flex;
@@ -11,4 +12,4 @@ const Main = styled.div`
 
 const Settings: React.SFC = () => <Main>Settings</Main>
 
-export default Settings
+export default withAuth(Settings)
