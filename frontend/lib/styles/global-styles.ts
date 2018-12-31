@@ -10,7 +10,7 @@ const {
   ThemeProvider
 } = styledComponents as ThemedStyledComponentsModule<ThemeInterface>
 
-const fontDeclarations = css`
+const TYPEFACE = css`
   @font-face {
     font-family: 'Gotham Rounded Bold';
     src: url('/static/GothamRnd-Bold.woff2') format('woff2'),
@@ -45,11 +45,9 @@ const fontDeclarations = css`
   }
 `
 
-const baseStyle = css`
+const BASE = css`
   html {
     overflow: hidden;
-  }
-  html * {
     box-sizing: border-box;
     font-family: 'Gotham Rounded Book';
     font-size: 16px;
@@ -73,16 +71,16 @@ const baseStyle = css`
     margin: 0;
     padding: 0;
     color: ${({ theme }) => theme.black};
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 2;
     background: ${({ theme }) => theme.background};
   }
 `
 
 const GlobalStyle = createGlobalStyle`
-  ${fontDeclarations}
+  ${TYPEFACE}
 
-  ${baseStyle}
+  ${BASE}
 
   #__next {
     max-width: ${({ theme }) => theme.maxWidth};
@@ -90,6 +88,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 1rem 2rem;
   }
 `
+
+export const SCREEN_SIZES = {
+  desktop: 992,
+  tablet: 768,
+  mobile: 576
+}
 
 export default styled
 

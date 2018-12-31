@@ -1,38 +1,45 @@
-import Link from 'next/link'
-import Router from 'next/router'
-import NProgress from 'nprogress'
+import Nav from './Nav'
+import { Logo } from '../../elements'
+import styled from '../../lib/styles/global-styles'
+import { media } from '../../lib/styles/style-utils'
 
-import styled, { media } from '../../lib'
-
-Router.onRouteChangeStart = () => NProgress.start()
-Router.onRouteChangeComplete = () => NProgress.done()
-Router.onRouteChangeError = () => NProgress.done()
-
-const Nav = styled.nav`
+const StyledHeader = styled.header`
   display: grid;
-  height: 70px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
 
-  a {
-    color: ${({ theme }) => theme.black};
-    align-self: center;
-    text-align: center;
-  }
-
-  ${media.desktop`
-    grid-template-columns: repeat(4, 1fr) 60%;
+  ${media.tablet`
+    grid-template-columns: 1fr 1fr;
   `}
 `
 
+const LogoWrapper = styled.div`
+  display: none;
+  height: 70px;
+
+  ${media.tablet`
+    display: grid;
+    grid-template-columns: 70px 140px 1fr;
+    height: 70px;
+  `}
+`
+
+const H1 = styled.h1`
+  align-self: center;
+  margin: 0;
+  color: ${({ theme }) => theme.white};
+  font-size: 2rem;
+  text-align: center;
+`
+
+
 const Header: React.SFC = (): JSX.Element => (
-  <header>
-    <Nav>
-      <Link href="/"><a>Home</a></Link>
-      <Link href="/decks"><a>Decks</a></Link>
-      <Link href="/profile"><a>Profile</a></Link>
-      <Link href="/settings"><a>Settings</a></Link>
-    </Nav>
-  </header>
+  <StyledHeader>
+    <LogoWrapper>
+      <Logo width="80%" height="80%" rotate />
+      <H1>FLASHY</H1>
+    </LogoWrapper>
+    <Nav />
+  </StyledHeader>
 )
 
 export default Header

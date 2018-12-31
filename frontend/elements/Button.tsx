@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import styled, { css } from '../lib'
+import styled, { css } from '../lib/styles/global-styles'
 
 const buttonStyles = {
   base: css`

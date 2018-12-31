@@ -1,6 +1,7 @@
 const maxWidth = '1000px'
 // const boxShadow = '0 12px 24px 0 rgba(0, 0, 0, 0.09)'
-// 0 2px 16px 1px rgba(0, 0, 0, 0.15)
+// box-shadow: 0 0 15px rgba(0,0,0,.08), 0 0 4px rgba(0,0,0,.05);
+// box-shadow: 0 2px 16px 1px rgba(0, 0, 0, 0.15);
 
 // neutrals
 const black = '#393939'
@@ -61,7 +62,7 @@ export interface ThemeInterface {
   malachite: string
 }
 
-export const baseTheme = {
+export const BASE_THEME = {
   background: malachite,
   black,
   lightGrey,
@@ -71,7 +72,7 @@ export const baseTheme = {
   malachite
 }
 
-export const altTheme = {
-  ...baseTheme,
+export const ALT_THEME = {
+  ...BASE_THEME,
   background: aliceBlue,
 }

@@ -1,5 +1,5 @@
 import { Logo, LogoBg } from '.'
-import styled from '../lib'
+import styled from '../lib/styles/global-styles'
 
 const LogoWrapper = styled.div`
   display: flex;

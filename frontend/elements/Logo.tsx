@@ -1,8 +1,13 @@
-const Logo = () => (
+const Logo = ({ height = '144px', width = '138px', rotate }) => (
   <svg
-    style={{ zIndex: 1, alignSelf: 'center', justifySelf: 'center' }}
-    width="138"
-    height="144"
+    style={{
+      zIndex: 1,
+      alignSelf: 'center',
+      justifySelf: 'center',
+      transform: rotate && 'rotate(-6deg)'
+    }}
+    width={width}
+    height={height}
     viewBox="0 0 138 144"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -1,4 +1,4 @@
-import styled from '../lib'
+import styled from '../lib/styles/global-styles'
 
 const H1 = styled.h1`
   margin-top: 25px;

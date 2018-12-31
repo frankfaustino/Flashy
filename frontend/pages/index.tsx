@@ -1,32 +1,37 @@
-import { Button, H1, LogoWithBg } from '../elements'
-import styled from '../lib'
+import * as React from 'react'
 
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 80vh;
-  max-width: ${({ theme }) => theme.maxWidth};
-`
+import styled from '../lib/styles/global-styles'
 
-const Buttons = styled.div`
+const StyledHome = styled.div`
   display: grid;
-  overflow: visible;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  margin-top: 25px;
+  grid-gap: 40px;
+  height: 80vh;
+  padding: 2rem;
 `
 
-const Landing: React.SFC = () => (
-  <Main>
-    <LogoWithBg />
-    <H1>FLASHY</H1>
-    <Buttons>
-      <Button text="Sign up" to="/signup" variant="dashed" />
-      <Button text="Login" to="/login" variant="solid" />
-    </Buttons>
-  </Main>
-)
+const StyledDiv = styled.div`
+  width: 400px;
+  height: 100px;
+  background: ${({ theme }) => theme.malachite};
+  border-radius: 10px;
+`
 
-export default Landing
+const Home = () => {
+  return (
+    <StyledHome>
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+      <StyledDiv />
+    </StyledHome>
+  )
+}
+
+export default Home
