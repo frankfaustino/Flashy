@@ -1,4 +1,4 @@
-import styled, { keyframes } from '../../lib'
+import styled, { keyframes } from '../../lib/styles/global-styles'
 
 const loading = keyframes`
   from {

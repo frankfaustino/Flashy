@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useState } from 'react'
 import { ValidationError } from 'yup'
+import Router from 'next/router'
 
 const FormContext = createContext(undefined)
 
@@ -14,7 +15,7 @@ interface Event {
 interface FormUtilsArgs {
   children?: ReactNode
   initialValues: any
-  onSubmit: Function
+  onSubmit: (obj: any) => Promise<any>
   validate: Function
 }
 
@@ -31,7 +32,12 @@ const convertErrors = (error: ValidationError) => {
   return {}
 }
 
-const FormLib = ({ children, initialValues, onSubmit, validate }: FormUtilsArgs) => {
+const FormLib: React.SFC<FormUtilsArgs> = ({
+  children,
+  initialValues,
+  onSubmit,
+  validate
+}) => {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
 
@@ -49,12 +55,16 @@ const FormLib = ({ children, initialValues, onSubmit, validate }: FormUtilsArgs)
   async function submitForm() {
     try {
       validate && validate(values)
-      const response = await onSubmit({ variables: values })
 
-      if (response && response.data.logIn && !response.data.logIn.token) {
+      const { data } = await onSubmit({ variables: values })
+
+      if (data && data.logIn && !data.logIn.token) {
         setErrors({ password: 'invalid credentials' })
       }
-      console.log('🙋‍ Authentication successful ', response)
+      if (data && (data.logIn || data.signUp)) {
+        console.log('🙋‍ Authentication successful ', data)
+        Router.push('/')
+      }
     } catch (err) {
       console.log('🙅‍ Error: ', err)
       setErrors(convertErrors(err))
@@ -80,11 +90,7 @@ const FormLib = ({ children, initialValues, onSubmit, validate }: FormUtilsArgs)
     input
   }
 
-  return (
-    <FormContext.Provider value={ctx}>
-      {children}
-    </FormContext.Provider>
-  )
+  return <FormContext.Provider value={ctx}>{children}</FormContext.Provider>
 }
 
 export default FormLib
