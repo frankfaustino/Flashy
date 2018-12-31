@@ -9,7 +9,7 @@ export const Mutation: ResolverMap = {
   signUp: async (_, { email, name, password }: GQL.ISignUpOnMutationArguments, ctx) => {
     const hashPassword = await hash(password, 12)
     const user = await ctx.prisma.createUser({
-      email,
+      email: email.toLowerCase(),
       name,
       password: hashPassword
     })
@@ -20,7 +20,7 @@ export const Mutation: ResolverMap = {
   },
 
   logIn: async (_, { email, password }: GQL.ILogInOnMutationArguments, ctx) => {
-    const user = await ctx.prisma.user({ email })
+    const user = await ctx.prisma.user({ email: email.toLowerCase() })
     if (!user) {
       return sendError()
     }
@@ -35,8 +35,9 @@ export const Mutation: ResolverMap = {
     return { token, id: user.id, name: user.name, email: user.email }
   },
 
-  logOut: async (_, args, { req }) => {
+  logOut: async (_, args, { req, res }) => {
     await req.session.destroy(err => err && ({ message: 'unable to logout' }))
+    res.clearCookie('qid', { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
     return { message: 'success!' }
   },
 

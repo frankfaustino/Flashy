@@ -1,9 +1,10 @@
 import { Prisma } from '../generated/prisma-client'
-import { Request } from 'express'
+import { Response, Request } from 'express'
 
 export interface Context {
   prisma: Prisma
   req: Request
+  res: Response
   request: Request
 }
 
