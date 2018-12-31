@@ -23,10 +23,10 @@ const FormWrapper: React.SFC<FormProps> = ({ loading, type }) => {
       <fieldset disabled={loading} aria-busy={loading}>
         {type === 'Sign up' && nameInput}
         <label>Email</label>
-        <input name="email" {...input('email')} />
+        <input name="email" autoComplete="username" {...input('email')} />
         {errors.email && <div>{errors.email}</div>}
         <label>Password</label>
-        <input name="password" {...input('password')} />
+        <input name="password" type="password" autoComplete="current-password" {...input('password')} />
         {errors.password && <div>{errors.password}</div>}
         <Button size="100%" text={type} type="submit" variant="solid" />
       </fieldset>
