@@ -1,4 +1,10 @@
-const Logo = ({ height = '144px', width = '138px', rotate }) => (
+interface LogoProps {
+  height?: string
+  width?: string
+  rotate?: boolean
+}
+
+const Logo: React.SFC<LogoProps> = ({ height = '144px', width = '138px', rotate }) => (
   <svg
     style={{
       zIndex: 1,
